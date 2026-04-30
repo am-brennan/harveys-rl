@@ -134,33 +134,41 @@
 
     .section-title {
       font-size: clamp(1.8rem, 3vw, 2.6rem);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       text-align: center;
     }
 
     .section-intro {
       color: var(--muted);
-      max-width: 760px;
-      margin: 0 auto 2rem auto;
+      max-width: 700px;
+      margin: 0 auto 2.5rem auto;
       text-align: center;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      gap: 1.5rem;
+      margin-top: 1rem;
     }
 
     .card {
       background: var(--white);
-      padding: 1.5rem;
+      padding: 1.75rem;
       border-radius: 1rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
     }
 
     .card h3 {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.25rem;
     }
 
     .table-wrap {
@@ -335,7 +343,7 @@
   <main id="home">
     <section class="hero">
       <div class="hero-content">
-        <h1>Excavation, materials, and reliable local service.</h1>
+        <h1>RELIABLE LOCAL SERVICE</h1>
         <p>R.L. Harvey provides excavation, land clearing, demolition, septic fields, dump truck services, snow removal, and bulk landscaping materials.</p>
         <div class="hero-actions">
           <a class="button" href="#contact">Request a Quote</a>
