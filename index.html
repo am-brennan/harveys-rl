@@ -325,6 +325,49 @@
         padding: 4rem 1rem;
       }
     }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+  
+    .popup-box {
+      background: white;
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    
+    .popup-box h3 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .popup-box p {
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      border: none;
+      background: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--dark);
+    }
   </style>
 </head>
 
@@ -565,15 +608,18 @@
           <textarea id="message" name="message" required placeholder="Tell us about the job, material needed, delivery location, timeline, or any important details."></textarea>
 
           <button class="button" type="submit">Send Request</button>
-
-          <p id="formSuccess" style="display:none; margin-top:1rem; color:green; font-weight:700;">
-            Thank you! Your request has been sent.
-          </p>
-          
-          <p id="formError" style="display:none; margin-top:1rem; color:red; font-weight:700;">
-            Something went wrong. Please call 902-790-3257.
-          </p>
         </form>
+        <div id="successPopup" class="popup-overlay" style="display:none;">
+        <div class="popup-box">
+          <button class="popup-close" id="popupClose">&times;</button>
+      
+          <h3>Thank You!</h3>
+      
+          <p>Your request has been sent successfully. We’ll get back to you as soon as possible.</p>
+      
+          <button class="button" id="popupButton">Close</button>
+        </div>
+      </div>
       </div>
     </section>
   </main>
@@ -624,17 +670,35 @@
   </script>
   <script>
 document.addEventListener("DOMContentLoaded", function () {
+
   const quoteForm = document.getElementById("quoteForm");
-  const formSuccess = document.getElementById("formSuccess");
-  const formError = document.getElementById("formError");
+  const successPopup = document.getElementById("successPopup");
+  const popupClose = document.getElementById("popupClose");
+  const popupButton = document.getElementById("popupButton");
+
+  function closePopup() {
+    successPopup.style.display = "none";
+  }
+
+  popupClose.addEventListener("click", closePopup);
+  popupButton.addEventListener("click", closePopup);
+
+  successPopup.addEventListener("click", function(event) {
+    if (event.target === successPopup) {
+      closePopup();
+    }
+  });
 
   quoteForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    formSuccess.style.display = "none";
-    formError.style.display = "none";
+    const submitButton = quoteForm.querySelector('button[type="submit"]');
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
 
     try {
+
       const response = await fetch(quoteForm.action, {
         method: "POST",
         body: new FormData(quoteForm),
@@ -645,15 +709,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         quoteForm.reset();
-        formSuccess.style.display = "block";
+        successPopup.style.display = "flex";
       } else {
-        formError.style.display = "block";
+        alert("Something went wrong. Please call 902-790-3257.");
       }
 
     } catch (error) {
-      formError.style.display = "block";
+      alert("Something went wrong. Please call 902-790-3257.");
     }
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Send Request";
+
   });
+
 });
 </script>
 </body>
