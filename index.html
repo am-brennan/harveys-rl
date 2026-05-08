@@ -162,25 +162,26 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       text-align: left;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border-top: 5px solid var(--gold);
-  }
-
-.card:nth-child(2),
-.card:nth-child(5),
-.card:nth-child(8) {
-  border-top-color: #7a4f2b;
-}
-
-.card:nth-child(3),
-.card:nth-child(6),
-.card:nth-child(9) {
-  border-top-color: #3f5f46;
-}
+      border-top: 5px solid var(--gold);
+      cursor: pointer;
     }
 
+    .card:nth-child(2),
+    .card:nth-child(5),
+    .card:nth-child(8) {
+      border-top-color: #7a4f2b;
+    }
+    
+    .card:nth-child(3),
+    .card:nth-child(6),
+    .card:nth-child(9) {
+      border-top-color: #3f5f46;
+    }
+    
+
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
     }
 
     .card h3 {
@@ -416,6 +417,53 @@
       backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.12);
     }
+    .gallery-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    
+    .gallery-box {
+      position: relative;
+      max-width: 900px;
+      width: 90%;
+    }
+    
+    .gallery-box img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+    
+    .gallery-close,
+    .gallery-arrow {
+      position: absolute;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 2rem;
+      border-radius: 999px;
+    }
+    
+    .gallery-close {
+      top: -45px;
+      right: 0;
+    }
+    
+    .gallery-arrow.left {
+      left: -50px;
+      top: 50%;
+    }
+    
+    .gallery-arrow.right {
+      right: -50px;
+      top: 50%;
+    }
   </style>
 </head>
 
@@ -451,7 +499,7 @@
         <p class="section-intro">Dependable excavation, property preparation, hauling, and seasonal services for residential and commercial jobs.</p>
 
         <div class="cards">
-          <article class="card">
+          <article class="card" onclick="openGallery(['images/screener.jpg', 'images/backhoe.jpg'])">
             <h3>Excavation</h3>
             <p>General excavation, trenching, grading, digging, and preparation for residential and commercial projects.</p>
           </article>
@@ -786,6 +834,40 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+</script>
+  <div id="galleryPopup" class="gallery-overlay" style="display:none;">
+  <div class="gallery-box">
+    <button onclick="closeGallery()" class="gallery-close">&times;</button>
+    <button onclick="prevImage()" class="gallery-arrow left">&#10094;</button>
+    <img id="galleryImage" src="" alt="Service photo">
+    <button onclick="nextImage()" class="gallery-arrow right">&#10095;</button>
+  </div>
+</div>
+
+  <script>
+let galleryImages = [];
+let currentImageIndex = 0;
+
+function openGallery(images) {
+  galleryImages = images;
+  currentImageIndex = 0;
+  document.getElementById("galleryImage").src = galleryImages[currentImageIndex];
+  document.getElementById("galleryPopup").style.display = "flex";
+}
+
+function closeGallery() {
+  document.getElementById("galleryPopup").style.display = "none";
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  document.getElementById("galleryImage").src = galleryImages[currentImageIndex];
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  document.getElementById("galleryImage").src = galleryImages[currentImageIndex];
+}
 </script>
 </body>
 </html>
