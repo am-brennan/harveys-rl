@@ -530,6 +530,26 @@
       background: var(--gold);
       color: var(--dark);
     }
+
+    .delivery-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    
+    .delivery-table td {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .delivery-table td:last-child {
+      text-align: right;
+    }
+    
+    .dropoff-box {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
   </style>
 </head>
 
@@ -653,22 +673,42 @@
     </div>
 
     <div class="note-box">
-          <h3>Delivery Information</h3>
+      <h3>Delivery & Drop-Off</h3>
+    
+      <p style="margin-bottom: 1rem;">
+        Material delivery available across Nova Scotia.
+      </p>
+    
+      <table class="delivery-table">
+        <tr>
+          <td>Within 10 km of Brooklyn</td>
+          <td><strong>From $50</strong></td>
+        </tr>
+    
+        <tr>
+          <td>Within 20 km of Brooklyn</td>
+          <td><strong>From $100</strong></td>
+        </tr>
+    
+        <tr>
+          <td>Within 100 km of Brooklyn</td>
+          <td><strong>From $200</strong></td>
+        </tr>
+    
+        <tr>
+          <td>Outside these areas</td>
+          <td><strong>Contact for pricing</strong></td>
+        </tr>
+      </table>
+    
+      <div class="dropoff-box">
+        <strong>Brush & Tree Drop-Off</strong><br>
+        We accept fallen trees, brush, and clean wood waste.<br>
+        Please call ahead before drop-off.
+      </div>
+    </div>
 
-          <p><strong>Delivery pricing starts at:</strong></p>
-        
-          <ul>
-            <li>$50 within 10 km of Brooklyn, Nova Scotia</li>
-            <li>$100 within 20 km of Brooklyn, Nova Scotia</li>
-            <li>$200 within 100 km of Brooklyn, Nova Scotia</li>
-            <li>Contact us for delivery pricing outside these areas</li>
-          </ul>
-        
-          <p style="margin-top: 1rem;">
-            <strong>Drop-off:</strong> We accept fallen trees and brush. Please call ahead.
-          </p>
-        </div>
-
+    
         <div class="calculator-box">
           <h3>Material Calculator</h3>
           <p>Enter the length, width, and depth/height to estimate how many cubic yards of material you need.</p>
