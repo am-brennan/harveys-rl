@@ -473,14 +473,25 @@
     .gallery-close {
       top: 1rem;
       right: 1rem;
-      font-size: 2.25rem;
+    
+      font-size: 1.8rem;
+      line-height: 1;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .gallery-arrow {
       top: 50%;
       transform: translateY(-50%);
-      font-size: 2.5rem;
+    
+      font-size: 2rem;
       line-height: 1;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .gallery-arrow.left {
@@ -869,10 +880,10 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
   <div id="galleryPopup" class="gallery-overlay" style="display:none;">
   <div class="gallery-box">
-    <button onclick="closeGallery()" class="gallery-close">×</button>
-    <button onclick="prevImage()" class="gallery-arrow left">‹</button>
+    <button onclick="closeGallery()" class="gallery-close">&#10095;</button>
+    <button onclick="prevImage()" class="gallery-arrow left">&#10094;</button>
     <img id="galleryImage" src="" alt="Service photo">
-    <button onclick="nextImage()" class="gallery-arrow right">›</button>
+    <button onclick="nextImage()" class="gallery-arrow right">&#10094;</button>
   </div>
 </div>
 
