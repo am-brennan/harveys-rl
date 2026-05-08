@@ -391,6 +391,31 @@
       cursor: pointer;
       color: var(--dark);
     }
+    .image-section {
+      position: relative;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)),
+        url("images/onepile.jpg");
+    
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    
+      color: white;
+    }
+
+    .image-section .section-title,
+    .image-section .section-intro,
+    .image-section .card h3,
+    .image-section .card p {
+      color: white;
+    }
+
+    .image-section .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
   </style>
 </head>
 
@@ -568,7 +593,7 @@
   </div>
 </section>
 
-    <section id="why">
+    <section id="why" class="image-section">
       <div class="section">
         <h2 class="section-title">Why Choose Us</h2>
         <p class="section-intro">Straightforward service, practical experience, and dependable equipment for property owners and contractors.</p>
