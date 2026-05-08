@@ -328,31 +328,6 @@
   </style>
 </head>
 
-<script>
-  const quoteForm = document.getElementById("quoteForm");
-
-  quoteForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(quoteForm);
-
-    const response = await fetch(quoteForm.action, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json"
-      }
-    });
-
-    if (response.ok) {
-      alert("Thank you! Your request has been sent.");
-      quoteForm.reset();
-    } else {
-      alert("Something went wrong. Please call 902-790-3257.");
-    }
-  });
-</script>
-
 <body>
   <header>
     <nav class="nav" aria-label="Main navigation">
@@ -692,5 +667,29 @@
       if (event.target === successPopup) closePopup();
     });
   </script>
+  <script>
+  const quoteForm = document.getElementById("quoteForm");
+
+  quoteForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(quoteForm);
+
+    const response = await fetch(quoteForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (response.ok) {
+      alert("Thank you! Your request has been sent.");
+      quoteForm.reset();
+    } else {
+      alert("Something went wrong. Please call 902-790-3257.");
+    }
+  });
+</script>
 </body>
 </html>
