@@ -622,27 +622,39 @@
       document.getElementById(id).addEventListener('change', calculateCubicYards);
     });
   </script>
-    <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const quoteForm = document.getElementById("quoteForm");
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const quoteForm = document.getElementById("quoteForm");
+  const formSuccess = document.getElementById("formSuccess");
+  const formError = document.getElementById("formError");
 
-    quoteForm.addEventListener("submit", async function (event) {
-      event.preventDefault();
+  quoteForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
+    formSuccess.style.display = "none";
+    formError.style.display = "none";
+
+    try {
       const response = await fetch(quoteForm.action, {
         method: "POST",
         body: new FormData(quoteForm),
-        headers: { "Accept": "application/json" }
+        headers: {
+          "Accept": "application/json"
+        }
       });
 
       if (response.ok) {
-        alert("Thank you! Your request has been sent.");
         quoteForm.reset();
+        formSuccess.style.display = "block";
       } else {
-        alert("Something went wrong. Please call 902-790-3257.");
+        formError.style.display = "block";
       }
-    });
+
+    } catch (error) {
+      formError.style.display = "block";
+    }
   });
+});
 </script>
 </body>
 </html>
