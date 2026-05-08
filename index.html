@@ -164,6 +164,8 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       border-top: 5px solid var(--gold);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .card:nth-child(2),
@@ -178,6 +180,27 @@
       border-top-color: #7a4f2b;
     }
     
+    .card-hover-text {
+      display: inline-block;
+      margin-top: 1rem;
+    
+      font-size: 0.9rem;
+      font-weight: 700;
+    
+      color: var(--gold);
+    
+      opacity: 0;
+      transform: translateY(8px);
+    
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+    
+    .card:hover .card-hover-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .card:hover {
       transform: translateY(-6px);
@@ -545,6 +568,7 @@
           <article class="card" onclick="openGallery(['images/screener.jpg', 'images/backhoe.jpg'])">
             <h3>Excavation</h3>
             <p>General excavation, trenching, grading, digging, and preparation for residential and commercial projects.</p>
+            <span class="card-hover-text">Click to view photos</span>
           </article>
 
           <article class="card">
@@ -880,10 +904,10 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
   <div id="galleryPopup" class="gallery-overlay" style="display:none;">
   <div class="gallery-box">
-    <button onclick="closeGallery()" class="gallery-close">&#10095;</button>
+    <button onclick="closeGallery()" class="gallery-close">&times;</button>
     <button onclick="prevImage()" class="gallery-arrow left">&#10094;</button>
     <img id="galleryImage" src="" alt="Service photo">
-    <button onclick="nextImage()" class="gallery-arrow right">&#10094;</button>
+    <button onclick="nextImage()" class="gallery-arrow right">&#10095;</button>
   </div>
 </div>
 
