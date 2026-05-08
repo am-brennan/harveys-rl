@@ -443,26 +443,56 @@
     .gallery-close,
     .gallery-arrow {
       position: absolute;
-      background: white;
       border: none;
       cursor: pointer;
-      font-size: 2rem;
+    
+      width: 56px;
+      height: 56px;
+    
       border-radius: 999px;
+    
+      background: rgba(15, 23, 42, 0.78);
+      color: white;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      font-size: 2rem;
+      font-weight: 700;
+    
+      backdrop-filter: blur(6px);
+    
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .gallery-close:hover,
+    .gallery-arrow:hover {
+      background: var(--gold);
+      color: var(--dark);
+      transform: scale(1.08);
     }
     
     .gallery-close {
-      top: -45px;
-      right: 0;
+      top: 1rem;
+      right: 1rem;
     }
-    
+    .gallery-arrow {
+      opacity: 0.85;
+    }
     .gallery-arrow.left {
-      left: -50px;
+      left: 1.5rem;
       top: 50%;
+      transform: translateY(-50%);
     }
     
     .gallery-arrow.right {
-      right: -50px;
+      right: 1.5rem;
       top: 50%;
+      transform: translateY(-50%);
     }
   </style>
 </head>
@@ -838,9 +868,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <div id="galleryPopup" class="gallery-overlay" style="display:none;">
   <div class="gallery-box">
     <button onclick="closeGallery()" class="gallery-close">&times;</button>
-    <button onclick="prevImage()" class="gallery-arrow left">&#10094;</button>
+    <button onclick="prevImage()" class="gallery-arrow left">‹</button>
     <img id="galleryImage" src="" alt="Service photo">
-    <button onclick="nextImage()" class="gallery-arrow right">&#10095;</button>
+    <button onclick="nextImage()" class="gallery-arrow right">›</button>
   </div>
 </div>
 
