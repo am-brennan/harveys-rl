@@ -87,11 +87,19 @@
     }
 
     .hero {
-      background: linear-gradient(rgba(31, 41, 51, 0.55), rgba(31, 41, 51, 0.55)), url('images/bigtrucks.jpg');
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      overflow: hidden;
       color: var(--white);
       padding: 6rem 1rem;
+    
+      background-size: cover;
+      background-position: center;
+    
+      transition: background-image 1s ease-in-out;
+    
+      background-image:
+        linear-gradient(rgba(31, 41, 51, 0.55), rgba(31, 41, 51, 0.55)),
+        url('images/bigtrucks.jpg');
     }
 
     .section,
@@ -1030,6 +1038,27 @@ function prevImage() {
   currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
   document.getElementById("galleryImage").src = galleryImages[currentImageIndex];
 }
+</script>
+  <script>
+const heroImages = [
+  "images/bigtrucks.jpg",
+  "images/onepileskinny.jpg",
+  "images/screener.jpg",
+  "images/twopiles.jpg"
+];
+
+let currentHeroImage = 0;
+
+function rotateHeroImage() {
+  currentHeroImage =
+    (currentHeroImage + 1) % heroImages.length;
+
+  document.querySelector(".hero").style.backgroundImage =
+    `linear-gradient(rgba(31, 41, 51, 0.55), rgba(31, 41, 51, 0.55)),
+    url('${heroImages[currentHeroImage]}')`;
+}
+
+setInterval(rotateHeroImage, 6000);
 </script>
 </body>
 </html>
