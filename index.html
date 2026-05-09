@@ -238,7 +238,6 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 650px;
     }
 
     th,
@@ -586,21 +585,90 @@
       padding-top: 1rem;
     }
 
+    .menu-toggle {
+      display: none;
+      background: var(--gold);
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 800px) {
+      .nav {
+        flex-direction: row;
+        align-items: center;
+      }
+    
+      .logo {
+        max-width: 75%;
+        font-size: 1rem;
+      }
+    
+      .menu-toggle {
+        display: block;
+      }
+    
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin-top: 1rem;
+      }
+    
+      .nav-links.active {
+        display: flex;
+      }
+    
+      .nav-links a {
+        padding: 0.85rem 0;
+        border-top: 1px solid var(--border);
+      }
+    
+      .nav-links .button {
+        text-align: center;
+        margin-top: 0.75rem;
+      }
+    }
+    @media (max-width: 600px) {
+      th,
+      td {
+        padding: 0.85rem;
+        font-size: 0.95rem;
+      }
+    
+      th:last-child,
+      td:last-child {
+        width: auto;
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+
   </style>
 </head>
 
 <body>
   <header>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#home" class="logo">R.L. Harvey's</a>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#materials">Materials</a>
-        <a href="#why">Why Choose Us</a>
-        <a href="#contact">Contact</a>
-        <a class="button" href="tel:19027903257">Call Now</a>
-      </div>
-    </nav>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#home" class="logo">R.L. Harvey Excavation & Materials</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      ☰
+    </button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#materials">Materials</a>
+      <a href="#why">Why Choose Us</a>
+      <a href="#contact">Contact</a>
+      <a class="button" href="tel:19027903257">Call Now</a>
+    </div>
+  </nav>
   </header>
 
   <main id="home">
@@ -1059,6 +1127,20 @@ function rotateHeroImage() {
 }
 
 setInterval(rotateHeroImage, 6000);
+</script>
+  <script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function () {
+  navLinks.classList.toggle("active");
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navLinks.classList.remove("active");
+  });
+});
 </script>
 </body>
 </html>
